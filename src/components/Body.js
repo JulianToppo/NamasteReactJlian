@@ -1,13 +1,17 @@
 import Restaurant from "./RestaurantCard";
 import resData from "../utils/mockData";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Body = () => {
 
     const [demoData,setDemoData]=useState([]);
 
+    const [searchElem,setSearchElem]=useState("");
+
+    const [filteredData,setFilteredData]=useState(demoData);
 
     useEffect(()=>{
+        console.log("use Effect for body called")
         fetchData();
     },[])
 
@@ -16,7 +20,9 @@ const Body = () => {
         let structured=await data.json();
         
         setDemoData(structured?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        //data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants   
+        //data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        
+        setFilteredData(structured?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)   
     }
 
     const btnClickHandler=()=>{
@@ -28,20 +34,29 @@ const Body = () => {
         setDemoData(filterdata);
     }
 
+    const onSearchHandler=()=>{4
+        let filteredDemoData=demoData.filter((val)=>{
+            return val.info.name.toUpperCase().includes(searchElem.toUpperCase());
+        })
+
+        setFilteredData(filteredDemoData)
+    }
   
     return (
         <div className="body-container">
             <div className="server-container">
-                {/* <form>
-                    <label htmlFor="restaurant-name"></label>
-                    <input id="restaurant-name" type="text"></input>
-                    <button type="submit">Search!</button>
-                </form> */}
+            
+                <input type="text" value={searchElem} onChange={(e)=>{
+                    setSearchElem(e.target.value)
+                }}></input>
+
+                <button onClick={onSearchHandler}>Search</button>
+
                 <button className="filter_btn" onClick={btnClickHandler}>Top Rated Restaurant</button>
             </div>
             <div className="all-restaurant">
-                {demoData.map((val)=>{
-                    return  <Restaurant key={val.info.resId} data={val}/>
+                {filteredData.map((val)=>{
+                    return  <Restaurant key={val.info.id} data={val}/>
                 })}
             </div>
         </div>

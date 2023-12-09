@@ -68,3 +68,8 @@
     cursor: pointer;
     margin:25px;
 }
+
+.sessionBtn{
+    padding:15px;
+    margin-bottom: 10px;;
+}

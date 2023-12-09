@@ -1,7 +1,5 @@
 const Restaurant = (props) => {
-
-  //  console.log(props.data.info)
-  console.log(props.data.info)
+    
    if(!props.data.info){
         console.log("mtttt")
     }
