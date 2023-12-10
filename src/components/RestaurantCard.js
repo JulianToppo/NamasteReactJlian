@@ -8,18 +8,18 @@ const Restaurant = (props) => {
     return (
         <div className="restaurant-container">
             <div className="restaurant-card">
-                <p>{name}</p>
+                
                 <div>
                     <img className="res-image" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+imageurl}>
                     </img>
+                    <h3>{name}</h3>
                 </div>
 
-                <div>
+                <div className="restaurant-details">
                     <ul>
                         <li>{stars}</li>
                         <li>{deliverytime}</li>
-                        <li>{cuisines.join(',')}</li>
-
+                        <li >{cuisines.join(',')}</li>
                     </ul>
                 </div>
             </div>

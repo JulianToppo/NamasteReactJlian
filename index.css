@@ -29,19 +29,22 @@
 
 
 .all-restaurant{
-    background-color: coral;
+    background-color: rgb(214, 198, 190);
     display: flex;
     flex-wrap: wrap;
+    padding:0px 50px;
+    border-radius: 40px;
 }
 
 .restaurant-container{
     display: flex;
     background-color: rgb(158, 180, 68);
     width: 250px;
-    height:250px;
+    height:350px;
     padding:5px 15px;
     margin:5px;
-    margin-left: 5%;
+    border-radius: 30px;
+    /* margin-left: 5%; */
 
 }
 
@@ -57,11 +60,13 @@
     /* background-color: rgb(51, 155, 108); */
     width: 80%;
     height:80%;  
+    padding:10px;
+ 
 }
 
 .res-image{
     width:200px ;
-    height:100px;
+    height:150px;
 }
 
 .filter_btn{
@@ -72,4 +77,19 @@
 .sessionBtn{
     padding:15px;
     margin-bottom: 10px;;
+}
+
+.menu-items{
+background-color: bisque;
+padding:20px;
+margin: 0px 250px;
+}
+
+.menu-item{
+    padding:20px 20px;
+    padding-left: 0px;;
+}
+
+.menu-section-heading>h2{
+    margin: 10px 250px;
 }

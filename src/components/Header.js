@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [sessionState,setSessionState]=useState("login")
@@ -22,10 +23,10 @@ const Header = () => {
 
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
+                    <li><Link to="/">Home</Link></li>
                     <li>Restaurants</li>
-                    <li>About</li>
-                    <li>Contact</li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/contactus">Contact</Link></li>
                     <li><button className="sessionBtn" value={sessionState} onClick={onClickSessionStateHandler}>{sessionState}</button></li>
 
                     {/* logout login */}
