@@ -3,7 +3,13 @@ import MenuItem from './MenuItem'
 
 function MenuSection(props) {
     const {title,itemCards}=props
-    console.log(title,itemCards)
+    console.log(title,"itemcards",itemCards)
+
+    if(!itemCards){
+        return (<div>
+
+        </div>)
+    }
   return (
     <div className='menu-section'>
         <div className='menu-section-heading'>
@@ -14,7 +20,7 @@ function MenuSection(props) {
                 itemCards.map((val)=>{
                     const {id,name,description,itemAttribute:{vegClassifier:vegNonVeg},price}=val.card.info;
                    
-                    return <MenuItem key={id} name={name} price={price} description={description}/>
+                    return <MenuItem key={id} name={name} price={price} vegNonVeg={vegNonVeg}description={description}/>
                    
                 })
             }

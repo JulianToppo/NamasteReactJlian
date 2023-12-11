@@ -1,11 +1,12 @@
-import { useState } from "react";
+import {lazy, useState } from "react";
 import { Link } from "react-router-dom";
+
 
 const Header = () => {
     const [sessionState,setSessionState]=useState("login")
 
     const onClickSessionStateHandler=(e)=>{
-        console.log("clciked")
+        console.log("clicked")
         if(sessionState==="login"){
             
             setSessionState("logout");
@@ -25,6 +26,7 @@ const Header = () => {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li>Restaurants</li>
+                    <li> <Link to="/grocery">Grocery</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contactus">Contact</Link></li>
                     <li><button className="sessionBtn" value={sessionState} onClick={onClickSessionStateHandler}>{sessionState}</button></li>

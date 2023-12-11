@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Body = () => {
-
+    console.log("body render")
     const [demoData,setDemoData]=useState([]);
 
     const [searchElem,setSearchElem]=useState("");
@@ -14,9 +14,18 @@ const Body = () => {
     useEffect(()=>{
         console.log("use Effect for body called")
         fetchData();
+        console.log("after fetch data")
+        const set=setInterval(()=>{
+            console.log("setInterval called")
+        },1000)
+
+        return ()=>{
+            clearInterval(set)
+        }
     },[])
 
     const fetchData= async ()=>{
+        console.log("fetch data called")
         let data=await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.5940499&lng=85.1376051&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
         let structured=await data.json();
         
@@ -24,6 +33,7 @@ const Body = () => {
         //data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         
         setFilteredData(structured?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)   
+        console.log("data fetched");
     }
 
     const btnClickHandler=()=>{
@@ -44,6 +54,7 @@ const Body = () => {
     }
   
     return (
+
         <div className="body-container">
             <div className="server-container">
             
@@ -57,7 +68,7 @@ const Body = () => {
             </div>
             <div className="all-restaurant">
                 {filteredData.map((val)=>{
-                    console.log("val",val)
+                    // console.log("val",val)
                     return  <Link key={val.info.id} to={"/restaurant/"+ val.info.id}><Restaurant  data={val}/>
                     </Link>
                 })}

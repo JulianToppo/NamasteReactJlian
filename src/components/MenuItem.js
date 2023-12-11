@@ -3,6 +3,7 @@ import React from 'react'
 function MenuItem(props) {
 
     const{name,description,vegNonVeg,price}=props;
+    // console.log(props)
     return (
         <div className='menu-item'>
 
