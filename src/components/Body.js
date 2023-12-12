@@ -1,4 +1,4 @@
-import Restaurant from "./RestaurantCard";
+import Restaurant, { PromotedLabelRestaurant } from "./RestaurantCard";
 import resData from "../utils/mockData";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -46,13 +46,16 @@ const Body = () => {
     }
 
     const onSearchHandler = () => {
-        4
         let filteredDemoData = demoData.filter((val) => {
             return val.info.name.toUpperCase().includes(searchElem.toUpperCase());
         })
 
         setFilteredData(filteredDemoData)
     }
+
+    //Higher order components
+
+    const WithPromotedLabel = PromotedLabelRestaurant(Restaurant);
 
     return (
 
@@ -73,12 +76,22 @@ const Body = () => {
             </div>
             <div className="all-restaurant flex ml-10 mr-10 flex-wrap justify-center">
                 {filteredData.map((val) => {
-                    // console.log("val",val)
-                    return <Link key={val.info.id} to={"/restaurant/" + val.info.id}><Restaurant data={val} />
-                    </Link>
-                })}
-            </div>
+                    console.log("val", val)
+                      return   < Link key = { val.info.id } to = { "/restaurant/" + val.info.id } >
+                        {
+                            (val?.info?.aggregatedDiscountInfoV3?.header) ?
+                                (<WithPromotedLabel discount={val?.info?.aggregatedDiscountInfoV3?.header} data={val}/>)
+                                :
+                                (<Restaurant data={val} />)
+                        }
+                        </Link>
+
+
+
+                }
+                )}
         </div>
+        </div >
     )
 }
 

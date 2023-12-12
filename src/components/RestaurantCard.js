@@ -39,4 +39,17 @@ const Restaurant = (props) => {
     )
 }
 
+export const PromotedLabelRestaurant=(Restaurant)=>{
+    return (props)=>{
+        return (
+            <div>
+                <label className="absolute bg-black text-white p-3 mt-3 rounded-full">
+                    {props.discount}
+                </label>
+                <Restaurant data={props.data}/>
+            </div>
+        )
+    }
+}
+
 export default Restaurant;
