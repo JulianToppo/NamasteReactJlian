@@ -17,22 +17,25 @@ const Header = () => {
         }
     }
     return (
-        <div className="header-container">
-            <div className="logo-container">
+        <div className="header-container flex justify-around bg-slate-200">
+            <div className="logo-container w-20">
                 <img className="logo" src="https://png.pngtree.com/element_our/png/20180930/food-icon-design-vector-png_120564.jpg"></img>
             </div>
 
-            <div className="nav-items">
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li>Restaurants</li>
-                    <li> <Link to="/grocery">Grocery</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/contactus">Contact</Link></li>
-                    <li><button className="sessionBtn" value={sessionState} onClick={onClickSessionStateHandler}>{sessionState}</button></li>
+            <div className="nav-items flex items-center">
+                <ul className="flex">
+                    <li className="m-7"><Link to="/">Home</Link></li>
+                    <li className="m-7">Restaurants</li>
+                    <li className="m-7"> <Link to="/grocery">Grocery</Link></li>
+                    <li className="m-7"><Link to="/about">About</Link></li>
+                    <li className="m-7"><Link to="/contactus">Contact</Link></li>                    
 
                     {/* logout login */}
                 </ul>
+            </div>
+
+            <div className="flex items-center justify-start">
+            <button className="sessionBtn p-2 rounded-lg  bg-orange-300" value={sessionState} onClick={onClickSessionStateHandler}>{sessionState}</button>
             </div>
 
         </div >
