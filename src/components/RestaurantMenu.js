@@ -24,7 +24,7 @@ const RestaurantMenu = () => {
         return (<div></div>)
     }
 
-    const { name, cuisines, totalRatings, costForTwoMessage, totalRatingsString } = menuItems[0].card.card.info
+    const { name, cuisines, avgRating, costForTwoMessage, totalRatingsString } = menuItems[0].card.card.info
     let { cards } = menuItems[2].groupedCard.cardGroupMap.REGULAR
 
     let card = cards.filter((val, index) => {
@@ -37,12 +37,20 @@ const RestaurantMenu = () => {
 
     return (
         <div className="menu">
-            <div className="restHeading">
-                <h1>{name}</h1>
-                <h3>{cuisines.join(',')}</h3>
-                <h6>{costForTwoMessage}</h6>
-                <h6>{totalRatingsString}</h6>
-                <h6>{totalRatings}</h6>
+            <div className="restHeading flex justify-between w-6/12 m-auto mt-2 mb-8 border-cyan-200">
+                <div className="py-6">
+                    <h1 className="text-xl font-semibold font-">{name}</h1>
+                    <h3 className="font-light">{cuisines.join(', ')}</h3>
+                    <h6 className="font-light">{costForTwoMessage}</h6>
+                </div>
+
+                <div className="flex flex-col justify-evenly p-4 border border-solid rounded-md">
+                    <h6 className="text-green-800 font-extrabold">{'🌟'+avgRating}</h6>
+                    <hr></hr>
+                    <h6 className="text-xs font-light">{totalRatingsString}</h6>
+
+                </div>
+
             </div>
 
             <div className="restDetails">
@@ -52,7 +60,7 @@ const RestaurantMenu = () => {
             <div className="resMenu">
                 {
                     card.map((val) => {
-                        const {title,itemCards}=val.card.card;
+                        const { title, itemCards } = val.card.card;
                         return <MenuSection title={title} itemCards={itemCards} />
                     })
                 }
