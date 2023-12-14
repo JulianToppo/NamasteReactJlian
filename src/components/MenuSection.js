@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import MenuItem from './MenuItem'
 
 function MenuSection(props) {
-    const { title, itemCards } = props
+    const { title, itemCards, checkStateForAccordion, setAccordion } = props
     console.log(title, "itemcards", itemCards)
 
-    const [ showItemsList, setShowItemList ] = useState(false)
+    const [showItemsList, setShowItemList] = useState(false)
 
     if (!itemCards) {
         return (<div>
@@ -15,8 +15,9 @@ function MenuSection(props) {
 
     const onClickSectionHandler = (e) => {
         e.preventDefault();
-        let list=!showItemsList
+        let list = !showItemsList
         setShowItemList(list)
+        setAccordion();
     }
 
     return (
@@ -27,7 +28,7 @@ function MenuSection(props) {
             </div>
             <div className='menu-items'>
                 {
-                  showItemsList &&  itemCards.map((val) => {
+                    checkStateForAccordion && (showItemsList) && itemCards.map((val) => {
                         console.log(val)
                         const { id, name, description, itemAttribute: { vegClassifier: vegNonVeg }, price, imageId } = val.card.info;
 

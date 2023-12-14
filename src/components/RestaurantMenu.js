@@ -7,6 +7,7 @@ const RestaurantMenu = () => {
 
     const [menuItems, setMenuItems] = useState([]);
     const { resID } = useParams();
+    const [showAccordionIndex, setShowAccordionIndex] = useState(0);
 
     useEffect(() => {
         fetchRestaurantData();
@@ -45,7 +46,7 @@ const RestaurantMenu = () => {
                 </div>
 
                 <div className="flex flex-col justify-evenly p-4 border border-solid rounded-md">
-                    <h6 className="text-green-800 font-extrabold">{'🌟'+avgRating}</h6>
+                    <h6 className="text-green-800 font-extrabold">{'🌟' + avgRating}</h6>
                     <hr></hr>
                     <h6 className="text-xs font-light">{totalRatingsString}</h6>
 
@@ -59,9 +60,10 @@ const RestaurantMenu = () => {
 
             <div className="resMenu">
                 {
-                    card.map((val) => {
+                    card.map((val, index) => {
                         const { title, itemCards } = val.card.card;
-                        return <MenuSection title={title} itemCards={itemCards} />
+
+                        return <MenuSection checkStateForAccordion={showAccordionIndex == index} setAccordion={() => { setShowAccordionIndex(index) }} title={title} itemCards={itemCards} />
                     })
                 }
             </div>
