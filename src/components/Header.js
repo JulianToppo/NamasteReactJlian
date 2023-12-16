@@ -1,5 +1,8 @@
-import {lazy, useState } from "react";
+import {lazy, useContext, useState } from 'react';
 import { Link } from "react-router-dom";
+import userContext from "../utils/context";
+import { useDispatch, useSelector } from 'react-redux';
+import appStore from '../utils/appStore';
 
 
 const Header = () => {
@@ -16,6 +19,19 @@ const Header = () => {
             
         }
     }
+
+    let userLoggedIn=useContext(userContext);
+
+    //console.log(userLoggedIn)
+
+    //let dispatch=useDispatch();
+
+    const  cart=useSelector((store)=>store.cart.items)
+
+    console.log("cart",cart)
+
+
+
     return (
         <div className="header-container flex justify-around bg-slate-200">
             <div className="logo-container w-20">
@@ -28,8 +44,11 @@ const Header = () => {
                     <li className="m-7">Restaurants</li>
                     <li className="m-7"> <Link to="/grocery">Grocery</Link></li>
                     <li className="m-7"><Link to="/about">About</Link></li>
-                    <li className="m-7"><Link to="/contactus">Contact</Link></li>                    
-
+                    <li className="m-7"><Link to="/contactus">Contact</Link></li>  
+                   
+                    <li className="m-7"><Link to="/cart">Cart-{cart.length==0?"":cart.length}</Link></li> 
+                    <li className="m-7">{userLoggedIn.loggedInUser}</li>                    
+                
                     {/* logout login */}
                 </ul>
             </div>

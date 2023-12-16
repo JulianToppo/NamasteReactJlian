@@ -1,4 +1,4 @@
-import React, {lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import '../index.css'
 import Header from './components/Header'
@@ -8,9 +8,11 @@ import Error from './components/Error'
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ContactUs from "./components/ContactUs";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
-
-const Grocery=lazy(()=>(import ('./components/Grocery')))
+const Grocery = lazy(() => (import('./components/Grocery')))
 
 const Footer = () => {
     return (
@@ -22,11 +24,13 @@ const Footer = () => {
 
 const AppLayout = () => {
     return (
-        <div className="app-container">
-            <Header />
-            <Outlet />
-            <Footer></Footer>
-        </div>
+        <Provider store={appStore}>
+            <div className="app-container">
+                <Header />
+                <Outlet />
+                <Footer></Footer>
+            </div>
+        </Provider>
 
     )
 }
@@ -56,8 +60,13 @@ const appRouter = createBrowserRouter([
 
         },
         {
-            path:'/grocery',
-            element:<Suspense fallback={<h1>Loading....</h1>}><Grocery/></Suspense>
+            path: '/grocery',
+            element: <Suspense fallback={<h1>Loading....</h1>}><Grocery /></Suspense>
+        },
+        {
+            path:'/cart',
+            element:<Cart/>,
+            errorElement:<Error/>
         }
         ],
         errorElement: <Error />

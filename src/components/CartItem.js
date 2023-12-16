@@ -1,21 +1,11 @@
 import React from 'react'
 import { imageDirectoryUrl } from '../utils/constants'
-import { useDispatch } from 'react-redux';
-import { addItem } from '../utils/cartSlice';
 
-function MenuItem(props) {
-
+const CartItem = (props) => {
+    console.log("inside cart Item")
     const { name, description, vegNonVeg, price, imageId } = props;
-    console.log("props", props)
 
-    const dispatch=useDispatch();
-    const addOnClickHandler = (e) => {
-        e.preventDefault();
-        const obj = {
-            name: name, description: description, vegNonVeg: vegNonVeg, price: price, imageId: imageId
-        }
-        dispatch(addItem(obj));
-    }
+    
     return (
         <div className='menu-item text-left py-3 shadow-md'>
             <button >{vegNonVeg == 'VEG' ? '🟩' : '🟥'}</button>
@@ -28,13 +18,12 @@ function MenuItem(props) {
                 <span className='w-4/12 p-2 flex'>
                     <span>{imageId && <img src={imageDirectoryUrl + imageId}></img>}</span>
 
-                    <button className='bg-black text-white p-3 rounded-sm absolute' onClick={addOnClickHandler}>Add +</button>
+                    <button className='bg-black text-white p-3 rounded-sm absolute'>Add +</button>
                 </span>
 
             </span>
-
         </div>
     )
 }
 
-export default MenuItem
+export default CartItem

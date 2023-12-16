@@ -69,7 +69,7 @@ const RestaurantMenu = () => {
             </div>
             {/* <h1>Name of the Restaurant</h1>
         <h1>Menu</h1>
-
+ 
         <ul>
             <li>Biryani</li>
             

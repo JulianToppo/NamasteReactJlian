@@ -2,6 +2,7 @@ import Restaurant, { PromotedLabelRestaurant } from "./RestaurantCard";
 import resData from "../utils/mockData";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import userContext from "../utils/context";
 
 const Body = () => {
     console.log("body render")
@@ -74,6 +75,7 @@ const Body = () => {
 
 
             </div>
+            
             <div className="all-restaurant flex ml-10 mr-10 flex-wrap justify-center">
                 {filteredData.map((val) => {
                     console.log("val", val)
